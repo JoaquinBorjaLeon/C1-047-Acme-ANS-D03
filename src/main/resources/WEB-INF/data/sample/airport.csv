@@ -1,0 +1,40 @@
+key,name,operationalScope,iataCode,city,country,website,email,contactPhone
+airport-01,Aeropuerto de Valencia,REGIONAL,VLC,Valencia,España,https://aeropuertovalencia.acme.com,aervalencia@gmail.com,+34603589522
+airport-02,Aeropuerto de Málaga,REGIONAL,AGP,Málaga,España,https://aeropuertomalaga.acme.com,aermalaga@gmail.com,+34603589523
+airport-03,Aeropuerto de Bilbao,REGIONAL,BIO,Bilbao,España,https://aeropuertobilbao.acme.com,aerbilbao@gmail.com,+34603589524
+airport-04,Aeropuerto de Murcia,REGIONAL,RMU,Murcia,España,https://aeropuertomurcia.acme.com,aermurcia@gmail.com,+34603589525
+airport-05,Aeropuerto de Granada,REGIONAL,GRX,Granada,España,https://aeropuertogranada.acme.com,aergranada@gmail.com,+34603589526
+airport-06,Aeropuerto de Zaragoza,DOMESTIC,ZAZ,Zaragoza,España,https://aeropuertozaragoza.acme.com,aerzaragoza@gmail.com,+34603589527
+airport-07,Aeropuerto de A Coruña,DOMESTIC,LCG,A Coruña,España,https://aeropuertocoruna.acme.com,aercoruna@gmail.com,+34603589528
+airport-08,Aeropuerto de Santander,DOMESTIC,SDR,Santander,España,https://aeropuertosantander.acme.com,aersantander@gmail.com,+34603589529
+airport-09,Aeropuerto de Ibiza,DOMESTIC,IBZ,Ibiza,España,https://aeropuertoibiza.acme.com,aeribiza@gmail.com,+34603589530
+airport-10,Aeropuerto de Vigo,DOMESTIC,VGO,Vigo,España,https://aeropuertovigo.acme.com,aervigo@gmail.com,+34603589531
+airport-11,Aeropuerto de Pamplona,DOMESTIC,PNA,Pamplona,España,https://aeropuertopamplona.acme.com,aerpamplona@gmail.com,+34603589532
+airport-12,Aeropuerto de Tenerife,INTERNATIONAL,TFS,Tenerife,España,https://aeropuertotenerife.acme.com,aertenerife@gmail.com,+34603589533
+airport-13,Aeropuerto de Menorca,INTERNATIONAL,MAH,Menorca,España,https://aeropuertomenorca.acme.com,aermenorca@gmail.com,+34603589534
+airport-14,Aeropuerto de Lanzarote,INTERNATIONAL,ACE,Lanzarote,España,https://aeropuertolanzarote.acme.com,aerlanzarote@gmail.com,+34603589535
+airport-15,Aeropuerto de Palma,INTERNATIONAL,PMI,Palma,España,https://aeropuertopalma.acme.com,aerpalma@gmail.com,+34603589536
+airport-16,Aeropuerto de Gran Canaria,INTERNATIONAL,LPA,Gran Canaria,España,https://aeropuertogc.acme.com,aergc@gmail.com,+34603589537
+airport-17,Aeropuerto de Alicante,INTERNATIONAL,ALC,Alicante,España,https://aeropuertoalicante.acme.com,aeralicante@gmail.com,+34603589538
+airport-18,Aeropuerto de Girona,INTERNATIONAL,GRO,Girona,España,https://aeropuertogirona.acme.com,aergirona@gmail.com,+34603589539
+airport-19,Aeropuerto de Madrid-Barajas,INTERNATIONAL,MAD,Madrid,España,https://aeropuertomadrid.acme.com,aermadrid@gmail.com,+34603589540
+airport-20,Aeropuerto de Barcelona-El Prat,INTERNATIONAL,BCN,Barcelona,España,https://aeropuertobarcelona.acme.com,aerbarcelona@gmail.com,+34603589541
+airport-21,Aeropuerto de San Sebastián,INTERNATIONAL,EAS,San Sebastián,España,https://aeropuertosansebastian.acme.com,aersansebastian@gmail.com,+34603589542
+airport-22,Aeropuerto de Asturias,INTERNATIONAL,OVD,Asturias,España,https://aeropuertoasturias.acme.com,aerasturias@gmail.com,+34603589543
+airport-23,Aeropuerto de Valladolid,INTERNATIONAL,VLL,Valladolid,España,https://aeropuertovalladolid.acme.com,aervalladolid@gmail.com,+34603589544
+airport-24,Aeropuerto de León,INTERNATIONAL,LEN,León,España,https://aeropuertoleon.acme.com,aerleon@gmail.com,+34603589545
+airport-25,Aeropuerto de Salamanca,INTERNATIONAL,SLM,Salamanca,España,https://aeropuertosalamanca.acme.com,aersalamanca@gmail.com,+34603589546
+airport-26,Aeropuerto de Badajoz,REGIONAL,BJZ,Badajoz,España,https://aeropuertobadajoz.acme.com,aerbadajoz@gmail.com,+34603589547
+airport-27,Aeropuerto de Almería,REGIONAL,LEI,Almería,España,https://aeropuertoalmeria.acme.com,aeralmeria@gmail.com,+34603589548
+airport-28,Aeropuerto de Melilla,REGIONAL,MLN,Melilla,España,https://aeropuertomelilla.acme.com,aermelilla@gmail.com,+34603589549
+airport-29,Aeropuerto de Ceuta,REGIONAL,CET,Ceuta,España,https://aeropuertoceuta.acme.com,aerceuta@gmail.com,+34603589550
+airport-30,Aeropuerto de Burgos,REGIONAL,RGS,Burgos,España,https://aeropuertoburgos.acme.com,aerburgos@gmail.com,+34603589551
+airport-31,Aeropuerto de Reus,REGIONAL,REU,Reus,España,https://aeropuertoreus.acme.com,aerreus@gmail.com,+34603589552
+airport-32,Aeropuerto de Logroño,REGIONAL,RJL,Logroño,España,https://aeropuertologrono.acme.com,aerlogrono@gmail.com,+34603589553
+airport-33,Aeropuerto de Jerez,REGIONAL,XRY,Jerez,España,https://aeropuertojerez.acme.com,aerjerez@gmail.com,+34603589554
+airport-34,Aeropuerto de Huesca,REGIONAL,HSK,Huesca,España,https://aeropuertohuesca.acme.com,aerhuesca@gmail.com,+34603589555
+airport-35,Aeropuerto de Lleida,REGIONAL,ILD,Lleida,España,https://aeropuertolleida.acme.com,aerlleida@gmail.com,+34603589556
+airport-36,Aeropuerto de Cuatro Vientos,REGIONAL,LEU,Madrid,España,https://aeropuertocuatrovientos.acme.com,aercuatrovientos@gmail.com,+34603589557
+airport-37,Aeropuerto de Son Bonet,REGIONAL,LES,Palma,España,https://aeropuertobonet.acme.com,aerbonet@gmail.com,+34603589558
+airport-38,Aeropuerto de Vitoria,REGIONAL,VIT,Vitoria,España,https://aeropuertovitoria.acme.com,aervitoria@gmail.com,+34603589559
+airport-39,Aeropuerto de Castellón,REGIONAL,CDT,Castellón,España,https://aeropuertocastellon.acme.com,aercastellon@gmail.com,+34603589560

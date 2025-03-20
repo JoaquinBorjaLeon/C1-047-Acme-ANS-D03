@@ -1,0 +1,11 @@
+key,key:userAccount,licenseNumber,phoneNumber,specialisation,hasPassedAnnualHealthTest,yearsOfExperience
+technician1,user-account-technician-01,AA000000,+111111,a,true,0
+technician2,user-account-technician-02,BBB999999,333333,ab,false,1
+technician3,user-account-technician-13,AA000001,+2222222,llevalatararaunvestidonegrollenodecascabelesrojos,true,64
+technician4,user-account-technician-04,AA000002,4444444,llevalatararaunvestidoblancollenodecascabelesrojos,false,65
+technician5,user-account-technician-05,AA000003,+55555555555555,"โลเร็มอิปซัม",true,3
+technician6,user-account-technician-06,AA000004,66666666666666,"لوريمإيبسوم",true,3
+technician7,user-account-technician-07,AA000005,+777777777777777,"洛伦·伊普森",true,3
+technician8,user-account-technician-08,AA000006,888888888888888,"<marquee>Hacked</marquee>",true,3
+technician9,user-account-technician-09,AA000007,+34722130987,"<script>alert(‘Hacked!’);</script>",true,3
+technician10,user-account-technician-10,AA000008,902202122,"'or'A'='A",true,3

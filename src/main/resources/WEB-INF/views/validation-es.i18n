@@ -1,0 +1,25 @@
+acme.validation.maintenancerecord.nextinspectiondate.message = La fecha de próxima revisión debe ser posterior a la fecha de última actual.
+acme.validation.review.missing-relation.message=Reseña no válida. Debe estar presente al menos uno de los siguientes: serviceReviewed, airlineReviewed, airportReviewed o flightReviewed.
+
+acme.validation.customer.invalid-identifier.message=Identificador no válido. Debe seguir el patrón ^[A-Z]{2,3}\\d{6}$ y coincidir con las iniciales del cliente.
+acme.validation.customer.invalid-phone-number.message=Número de teléfono no válido. Debe seguir el patrón ^\\+?\\d{6,15}$.
+acme.validation.customer.invalid-address.message=Dirección no válida. Debe tener entre 1 y 255 caracteres.
+acme.validation.customer.invalid-city.message=Ciudad no válida. Debe tener entre 1 y 50 caracteres.
+acme.validation.customer.invalid-country.message=País no válido. Debe tener entre 1 y 50 caracteres.
+acme.validation.customer.invalid-points.message=Puntos no válidos. Debe ser un valor entre 0 y 500,000.
+
+acme.validation.legs.flight-number.message = El número de vuelo debe estar compuesto por el código IATA de la aerolínea seguido de cuatro dígitos.
+acme.validation.legs.departure-arrival-date.message = La fecha de salida del vuelo debe ser mayor a la de llegada.
+acme.validation.legs.current-dates.message = La fecha de salida y de llegada del vuelo deben ser mayores a la actual.
+acme.validation.airlinemanagers.identifier.message = El identificador debe contener 2 o 3 letras siendo tus inciales y 6 dígitos.
+javax.validation.constraints.NotNull.message = El valor no puede ser nulo.
+javax.validation.constraints.NotBlank.message = El valor no puede estar en blanco.
+
+
+acme.validation.flightcrewmember.identifier.message = El identificador debe contener 2 o 3 letras siendo tus inciales y 6 dígitos.
+
+acme.validation.airlinemanagers.identifier.message = El identificador debe contener 2 o 3 letras siendo tus inciales y 6 dígitos.
+javax.validation.constraints.NotNull.message = El valor no puede ser nulo.
+javax.validation.constraints.NotBlank.message = El valor no puede estar en blanco.
+
+

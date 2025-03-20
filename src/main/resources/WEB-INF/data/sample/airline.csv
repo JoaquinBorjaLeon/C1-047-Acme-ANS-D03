@@ -1,0 +1,7 @@
+key,name,iataCode,websiteUrl,type,foundationMoment,email,phoneNumber
+airline-01,Airline1,ABC,http://lorem.com/ipsum,LUXURY,2020/02/02 00:00,acme@lorem-ipsum.org,+34657463263
+airline-02,Airline2,DEF,http://example.com/airline2,STANDARD,2019/06/15 14:30,contact@airline2.com,+34123456789
+airline-03,Airline3,GHI,http://example.com/airline3,LOW_COST,2021/09/10 08:45,support@airline3.com,+447890123456
+airline-04,Airline4,JKL,http://example.com/airline4,LUXURY,2018/11/23 19:15,info@airline4.com,+331122334455
+airline-05,Airline5,MNO,http://example.com/airline5,LOW_COST,2022/03/05 06:00,help@airline5.com,+390987654321
+airline-06,Airline6,PQR,http://example.com/airline6,STANDARD,2017/07/29 12:20,service@airline6.com,+819876543210

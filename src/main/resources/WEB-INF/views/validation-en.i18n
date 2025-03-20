@@ -1,0 +1,24 @@
+acme.validation.maintenancerecord.nextinspectiondate.message = Next inspection date should be after moment of inspection.
+acme.validation.review.missing-relation.message=Invalid review. At least one of serviceReviewed, airlineReviewed, airportReviewed, or flightReviewed must be present.
+
+acme.validation.customer.invalid-identifier.message=Invalid identifier. It must follow the pattern ^[A-Z]{2,3}\\d{6}$ and match the customer's initials.
+acme.validation.customer.invalid-phone-number.message=Invalid phone number. It must follow the pattern ^\\+?\\d{6,15}$.
+acme.validation.customer.invalid-address.message=Invalid address. It must be between 1 and 255 characters.
+acme.validation.customer.invalid-city.message=Invalid city. It must be between 1 and 50 characters.
+acme.validation.customer.invalid-country.message=Invalid country. It must be between 1 and 50 characters.
+acme.validation.customer.invalid-points.message=Invalid points. It must be between 0 and 500,000.
+
+acme.validation.legs.flight-number.message = The flight number must be composed by the airline IATA code followed by four digits.
+acme.validation.legs.current-dates.message = The date of departure and arrival of the flight must be greater than the current one.
+acme.validation.legs.departure-arrival-date.message = The flight departure date must be greater than the arrival date.
+acme.validation.airlinemanagers.identifier.message = The indentifier must have 2 or 3 letters correspond to your initials and 6 digits.
+javax.validation.constraints.NotNull.message = The value cannot be null.
+javax.validation.constraints.NotBlank.message = The value cannot be blank.
+
+acme.validation.flightcrewmember.identifier.message = The indentifier must have 2 or 3 letters correspond to your initials and 6 digits.
+
+acme.validation.airlinemanagers.identifier.message = The indentifier must have 2 or 3 letters correspond to your initials and 6 digits.
+javax.validation.constraints.NotNull.message = The value cannot be null.
+javax.validation.constraints.NotBlank.message = The value cannot be blank.
+
+
