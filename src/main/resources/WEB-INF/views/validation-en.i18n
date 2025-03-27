@@ -18,6 +18,9 @@ javax.validation.constraints.NotBlank.message = The value cannot be blank.
 acme.validation.flightcrewmember.identifier.message = The indentifier must have 2 or 3 letters correspond to your initials and 6 digits.
 
 acme.validation.airlinemanagers.identifier.message = The indentifier must have 2 or 3 letters correspond to your initials and 6 digits.
+
+acme.validation.activitylog.identifier.message = To record the incident, the status of "Leg" must be "LANDING".
+
 javax.validation.constraints.NotNull.message = The value cannot be null.
 javax.validation.constraints.NotBlank.message = The value cannot be blank.
 
