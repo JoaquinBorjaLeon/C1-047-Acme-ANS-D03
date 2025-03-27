@@ -11,6 +11,7 @@ acme.validation.customer.invalid-points.message=Puntos no válidos. Debe ser un 
 acme.validation.legs.flight-number.message = El número de vuelo debe estar compuesto por el código IATA de la aerolínea seguido de cuatro dígitos.
 acme.validation.legs.departure-arrival-date.message = La fecha de salida del vuelo debe ser mayor a la de llegada.
 acme.validation.legs.current-dates.message = La fecha de salida y de llegada del vuelo deben ser mayores a la actual.
+acme.validation.legs.flight-number.message = El número de vuelo debe ser único.
 acme.validation.airlinemanagers.identifier.message = El identificador debe contener 2 o 3 letras siendo tus inciales y 6 dígitos.
 javax.validation.constraints.NotNull.message = El valor no puede ser nulo.
 javax.validation.constraints.NotBlank.message = El valor no puede estar en blanco.
