@@ -47,5 +47,10 @@ public class Task extends AbstractEntity {
 //	@Mandatory
 //	@Automapped
 //	private Technician technician;
+	
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean draftMode;
 
 }
