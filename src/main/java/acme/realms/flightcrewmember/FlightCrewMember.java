@@ -53,7 +53,7 @@ public class FlightCrewMember extends AbstractRole {
 	private Airline				airline;
 
 	@Mandatory
-	@ValidMoney(min = 0, max = 1000000)
+	@ValidMoney(min = 0.0, max = 1000000.0)
 	@Automapped
 	private Money				salary;
 
