@@ -73,6 +73,11 @@ public class Leg extends AbstractEntity {
 	@ManyToOne
 	private Flight				flight;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
 
 	@Transient
 	public int durationInHours() {
