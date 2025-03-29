@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.customer.booking;
+package acme.features.customer.booking;
 
 import java.util.Collection;
 
@@ -53,10 +53,7 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(booking, "ticker", "title", "deadline");
-		super.addPayload(dataset, booking, //
-			"description", "moreInfo", "contractor.name", //
-			"employer.identity.fullName", "employer.area", "employer.sector");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "purchaseMoment");
 
 		super.getResponse().addData(dataset);
 	}

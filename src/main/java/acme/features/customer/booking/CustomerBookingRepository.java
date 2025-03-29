@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.booking;
+package acme.features.customer.booking;
 
 import java.util.Collection;
 
@@ -10,7 +10,6 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.Passenger;
 import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
-import acme.realms.Customer;
 
 @Repository
 public interface CustomerBookingRepository extends AbstractRepository {
@@ -18,17 +17,17 @@ public interface CustomerBookingRepository extends AbstractRepository {
 	@Query("select b from Booking b where b.id = :id")
 	Booking findBookingById(int id);
 
-	@Query("select b from Booking b where b.locatorCode = :locatorCode")
-	Booking findBookingByLocatorCode(String locatorCode);
-
-	@Query("select c from Customer c where c.id = :id")
-	Customer findCustomerById(int id);
-
 	@Query("select b from Booking b where b.customer.id = :customerId")
 	Collection<Booking> findBookingsByCustomerId(int customerId);
 
-	@Query("select p from Passenger p where p.booking.id = :bookingId")
-	Collection<Passenger> findPassengersByBookingId(int bookingId);
+	@Query("select distinct br.passenger from BookingRecord br where br.booking.id in (select b.id from Booking b where b.customer.id = :customerId)")
+	public Collection<Passenger> findPassengerByCustomerBookings(int customerId);
+
+	@Query("select br.passenger from BookingRecord br where br.booking.id = :bookingId")
+	Collection<Passenger> findPassengersByBooking(int bookingId);
+
+	@Query("select br.passenger from BookingRecord br where br.booking.id = :bookingId and br.passenger.draftMode = true")
+	Collection<Passenger> findPassengersInDraftMode(int bookingId);
 
 	@Query("select f from Flight f")
 	Collection<Flight> findAllFlights();

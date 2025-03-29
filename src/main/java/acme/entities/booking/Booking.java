@@ -31,7 +31,7 @@ public class Booking extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 6, max = 9, pattern = "^[A-Z0-9]{6,8}$")
+	@ValidString(min = 6, max = 8, pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
 	private String				locatorCode;
 
@@ -62,11 +62,11 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Customer			customer;
+	private Flight				flight;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Flight				flight;
+	private Customer			customer;
 
 }
