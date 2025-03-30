@@ -1,6 +1,7 @@
 
 package acme.constraints;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,11 +12,12 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = LegsValidator.class)
-public @interface ValidLegs {
+@Documented
+@Constraint(validatedBy = AirlineManagerValidator.class)
 
-	String message() default "";
+public @interface ValidAirlineManager {
 
+	String message() default "{acme.validation.airlinemanagers.identifier.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 
