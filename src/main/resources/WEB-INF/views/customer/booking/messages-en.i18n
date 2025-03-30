@@ -19,3 +19,6 @@ customer.booking.form.button.delete = Delete
 customer.booking.form.button.publish = Publish
 
 customer.booking.form.show.passengers = View passengers
+
+acme.validation.confirmation.message.lastCardNibble = Booking cannot be published if there is no LastCardNibble set
+acme.validation.confirmation.message.booking.locatorCode = This locatorCode does not belong to any Booking yet

@@ -19,3 +19,6 @@ customer.booking.form.button.delete = Eliminar
 customer.booking.form.button.publish = Publicar
 
 customer.booking.form.show.passengers = Ver pasajeros
+
+acme.validation.confirmation.message.lastCardNibble = La reserva no se puede publicar si no se han indicado los últimos 4 dígitos de la tarjeta de crédito
+acme.validation.confirmation.message.booking.locatorCode = Este localizador no está asociado a ninguna reserva todavía

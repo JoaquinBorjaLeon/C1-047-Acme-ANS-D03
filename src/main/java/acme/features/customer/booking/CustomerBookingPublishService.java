@@ -66,11 +66,19 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+		if (booking.getLastCardNibble() == null || booking.getLastCardNibble().isBlank() || booking.getLastCardNibble().isEmpty()) {
+			String lastCardNibbleStored = this.repository.findBookingById(booking.getId()).getLastCardNibble();
+			if (lastCardNibbleStored == null || lastCardNibbleStored.isBlank() || lastCardNibbleStored.isEmpty())
+				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastCardNibble");
+		}
 		;
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		if (booking.getLastCardNibble() == null || booking.getLastCardNibble().isBlank() || booking.getLastCardNibble().isEmpty())
+			booking.setLastCardNibble(this.repository.findBookingById(booking.getId()).getLastCardNibble());
+
 		booking.setDraftMode(false);
 		this.repository.save(booking);
 	}
