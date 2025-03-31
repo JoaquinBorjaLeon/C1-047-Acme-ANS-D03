@@ -1,4 +1,6 @@
-customer.booking.list.title = My bookings
+master.menu.customer.booking = Bookings
+
+customer.booking.list.title = List of bookings
 customer.booking.list.locatorCode = Locator code
 customer.booking.list.purchaseMoment = Purchase moment
 customer.booking.list.price = Price
@@ -22,3 +24,4 @@ customer.booking.form.show.passengers = View passengers
 
 acme.validation.confirmation.message.lastCardNibble = Booking cannot be published if there is no LastCardNibble set
 acme.validation.confirmation.message.booking.locatorCode = This locatorCode does not belong to any Booking yet
+acme.validation.confirmation.message.update = A booking cannot be modified if it is already published

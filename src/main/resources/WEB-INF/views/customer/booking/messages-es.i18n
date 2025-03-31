@@ -1,11 +1,13 @@
-customer.booking.list.title = Mis reservas
+master.menu.customer.booking = Reservas
+
+customer.booking.list.title = Listado de reservas
 customer.booking.list.locatorCode = Código de localización
 customer.booking.list.purchaseMoment = Fecha de la compra
 customer.booking.list.price = Precio
 customer.booking.list.travelClass = Clase
 customer.booking.list.button.create = Crear reserva
 
-customer.booking.form.title = Información de mi reserva
+customer.booking.form.title = Información de la reserva
 customer.booking.form.locatorCode = Código de localización (patrón = "^[A-Z0-9]{6,8}$")
 customer.booking.form.purchaseMoment = Fecha de la compra
 customer.booking.form.price = Precio
@@ -22,3 +24,4 @@ customer.booking.form.show.passengers = Ver pasajeros
 
 acme.validation.confirmation.message.lastCardNibble = La reserva no se puede publicar si no se han indicado los últimos 4 dígitos de la tarjeta de crédito
 acme.validation.confirmation.message.booking.locatorCode = Este localizador no está asociado a ninguna reserva todavía
+acme.validation.confirmation.message.update = La reserva no se puede modificar si ya ha sido publicada
