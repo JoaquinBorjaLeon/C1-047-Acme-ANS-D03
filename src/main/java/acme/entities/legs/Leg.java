@@ -16,10 +16,12 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.helpers.MomentHelper;
 import acme.constraints.ValidFlightNumber;
 import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import lombok.Getter;
@@ -49,6 +51,11 @@ public class Leg extends AbstractEntity {
 	private Date				scheduledArrival;
 
 	@Mandatory
+	@Automapped
+	@ValidNumber(min = 1, max = 17)
+	private Double				durationInHours;
+
+	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Airport				departureAirport;
@@ -61,7 +68,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private LegType				status;
+	private LegStatus			status;
 
 	@Mandatory
 	@Valid
@@ -72,6 +79,11 @@ public class Leg extends AbstractEntity {
 	@Valid
 	@ManyToOne
 	private Flight				flight;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 	@Mandatory
 	@Valid

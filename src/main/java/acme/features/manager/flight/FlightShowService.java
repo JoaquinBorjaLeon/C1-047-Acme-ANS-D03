@@ -53,7 +53,7 @@ public class FlightShowService extends AbstractGuiService<AirlineManager, Flight
 		dataset.put("scheduledArrival", flight.getScheduledArrival());
 		dataset.put("originCity", flight.getOriginCity());
 		dataset.put("destinationCity", flight.getDestinationCity());
-		dataset.put("numberOfLayovers", flight.getNumberOfLayovers());
+		dataset.put("numberOfLayovers", flight.getLayovers());
 
 		super.getResponse().addData(dataset);
 	}
