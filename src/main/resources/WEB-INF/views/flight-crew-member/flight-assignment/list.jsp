@@ -1,5 +1,5 @@
 <%--
-- banner.jsp
+- list.jsp
 -
 - Copyright (C) 2012-2025 Rafael Corchuelo.
 -
@@ -10,11 +10,18 @@
 - they accept any liabilities with respect to them.
 --%>
 
-<%@page%> 
+<%@page%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<div class="rounded" style="background: <acme:print code='master.banner.background'/>">
-	<img src="images/banner.png" alt="<acme:print code='master.banner.alt'/>" class="img-fluid rounded"/>
-</div>
+<acme:list>
+	<acme:list-column code="flightCrewMember.assignment.list.label.duty" path="duty" width="30%"/>
+	<acme:list-column code="flightCrewMember.assignment.list.label.lastUpdate" path="momentLastUpdate" width="30%"/>
+	<acme:list-column code="flightCrewMember.assignment.list.label.status" path="currentStatus" width="40%"/>
+	<acme:list-payload path="payload"/>
+</acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="flight-crew-member.flight-assignment.form.button.create" action="/flightCrewMember/flightAssignment/create"/>
+</jstl:if>	

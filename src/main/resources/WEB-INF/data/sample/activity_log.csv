@@ -1,2 +1,2 @@
-key,registrationMoment,incidentType,incidentDescription,severityLevel,key:reporter
-activityLog-01,2020/01/01 12:00,Fallo eléctrico,Pérdida de energía en el sistema de navegación principal.,5,flight-assignment-01
+key,registrationMoment,incidentType,incidentDescription,severityLevel,draftMode,key:reporter
+activityLog-01,2020/01/01 12:00,Fallo eléctrico,Pérdida de energía en el sistema de navegación principal.,5,true,flight-assignment-01
