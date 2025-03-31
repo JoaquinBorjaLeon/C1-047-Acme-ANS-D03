@@ -1,0 +1,31 @@
+authenticated.airlinemanager.flight.form.title = Flight form
+
+authenticated.airlinemanager.flight.form.label.tag = Tag
+authenticated.airlinemanager.flight.form.label.requiresSelfTransfer = Requires Self-Transfer?
+authenticated.airlinemanager.flight.form.label.cost = Cost
+authenticated.airlinemanager.flight.form.label.description = Description
+authenticated.airlinemanager.flight.form.label.scheduledDeparture = Scheduled Departure
+authenticated.airlinemanager.flight.form.label.scheduledArrival = Scheduled Arrival
+authenticated.airlinemanager.flight.form.label.draftMode = Draft Mode
+authenticated.airlinemanager.flight.form.label.confirmation = Confirm
+
+authenticated.airlinemanager.flight.list.label.tag = Tag
+authenticated.airlinemanager.flight.list.label.requiresSelfTransfer = Self-Transfer?
+authenticated.airlinemanager.flight.list.label.cost = Cost
+authenticated.airlinemanager.flight.list.label.description = Description
+authenticated.airlinemanager.flight.list.label.scheduledDeparture = Departure
+authenticated.airlinemanager.flight.list.label.scheduledArrival = Arrival
+authenticated.airlinemanager.flight.list.label.draftMode = Draft
+
+authenticated.airlinemanager.flight.list.title = AirlineManager Flight Listing
+master.menu.flight.list = List Flights
+master.menu.flight.create = Create Flight
+master.menu.flight = Flights
+
+button.create.flight = Create
+
+authenticated.airlinemanager.flight.form.button.create = Register
+authenticated.airlinemanager.flight.form.button.update = Update
+
+authenticated.airlinemanager.flight.form.error.duplicateTag = Tag already exists
+authenticated.airlinemanager.flight.form.error.invalidCost = Not a valid cost
