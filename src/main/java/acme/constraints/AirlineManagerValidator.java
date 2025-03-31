@@ -1,23 +1,19 @@
 
 package acme.constraints;
 
-import java.util.List;
-
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.airlinemanager.AirlineManager;
-import acme.realms.airlinemanager.AirlineManagerRepository;
 
 @Validator
 public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, AirlineManager> {
 
-	@Autowired
-	private AirlineManagerRepository repository;
+	// Internal state ---------------------------------------------------------
 
+	// ConstraintValidator interface ------------------------------------------
 
 	@Override
 	protected void initialise(final ValidAirlineManager annotation) {
@@ -25,34 +21,30 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 	}
 
 	@Override
-	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
+	public boolean isValid(final AirlineManager AirlineManager, final ConstraintValidatorContext context) {
+		// HINT: AirlineManager can be null
 		assert context != null;
 
 		boolean result;
 
-		if (airlineManager == null)
+		if (AirlineManager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			boolean codeContainsInitials = true;
+			DefaultUserIdentity identity = AirlineManager.getIdentity();
+			String nombreInicial = identity.getName().substring(0, 1);
+			String surname = identity.getSurname();
+			String[] palabras = surname.split("\\s");
+			String surnameIniciales = "";
+			int limite = Math.min(palabras.length, 2);
+			for (int i = 0; i < limite; i++)
+				if (!palabras[i].isEmpty())
+					surnameIniciales += palabras[i].substring(0, 1);
+			surnameIniciales = surnameIniciales.toUpperCase();
+			String iniciales = nombreInicial + surnameIniciales;
+			String identifier = AirlineManager.getIdentifierNumber();
 
-			String code = airlineManager.getIdentifierNumber();
-			String name = airlineManager.getUserAccount().getIdentity().getName();
-			String surname = airlineManager.getUserAccount().getIdentity().getSurname();
-
-			if (code != null && name != null && surname != null)
-				codeContainsInitials = code.charAt(0) == name.charAt(0) && code.charAt(1) == surname.charAt(0);
-			else
-				super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-
-			List<AirlineManager> airlineManagers = this.repository.findAllAirlineManagers();
-			boolean isUnique = airlineManagers.stream().noneMatch(am -> am.getIdentifierNumber().equals(code) && !am.equals(airlineManager));
-
-			if (!isUnique)
-				super.state(context, false, "*", "acme.validation.airline-manager.identifier-number.message");
-
-			if (!codeContainsInitials)
-				super.state(context, codeContainsInitials, "*", "acme.validation.role.identifier.message");
-
+			Boolean esCorrectoIdentificador = identifier.startsWith(iniciales);
+			super.state(context, esCorrectoIdentificador, "identifierNumber", "Initials Error");
 		}
 
 		result = !super.hasErrors(context);
