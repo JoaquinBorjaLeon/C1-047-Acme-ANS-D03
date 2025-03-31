@@ -1,13 +1,11 @@
 package acme.features.maintenancerecord;
 
-import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.MaintenanceRecordStatus;
 import acme.realms.technician.Technician;
@@ -52,8 +50,11 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 
 		Dataset dataset;
-
+		SelectChoices status;
+		status = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
+		
 		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
+		dataset.put("status", status);
 
 		super.getResponse().addData(dataset);
 	}
