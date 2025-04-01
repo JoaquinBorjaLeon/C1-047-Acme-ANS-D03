@@ -1,4 +1,4 @@
-package acme.features.technician.tasks;
+package acme.features.technician.task;
 
 import javax.annotation.PostConstruct;
 

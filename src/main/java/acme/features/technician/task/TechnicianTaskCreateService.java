@@ -1,4 +1,4 @@
-package acme.features.technician.tasks;
+package acme.features.technician.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import acme.entities.tasks.TaskType;
 import acme.realms.technician.Technician;
 
 @GuiService
-public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, Task> {
+public class TechnicianTaskCreateService extends AbstractGuiService<Technician, Task> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -22,29 +22,17 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		boolean exist;
-		Task task;
-		Technician technician;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		task = this.repository.findById(id);
-
-		exist = task != null;
-		if (exist) {
-			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(task.getTechnician()))
-				super.getResponse().setAuthorised(true);
-		}
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Task task;
-		int id;
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
-		id = super.getRequest().getData("id", int.class);
-		task = this.repository.findById(id);
+		task = new Task();
+		task.setDraftMode(true);
+		task.setTechnician(technician);
 
 		super.getBuffer().addData(task);
 	}
