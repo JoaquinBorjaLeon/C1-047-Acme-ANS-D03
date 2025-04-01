@@ -1,4 +1,7 @@
-manager.flight.list.title = Lista de mis vuelos:
+master.menu.manager = Manager
+master.menu.manager.flights = Vuelos
+
+manager.flight.list.title = Mis Vuelos:
 manager.flight.form.title = Detalles del vuelo:
 
 manager.flight.list.label.tag = Etiqueta:

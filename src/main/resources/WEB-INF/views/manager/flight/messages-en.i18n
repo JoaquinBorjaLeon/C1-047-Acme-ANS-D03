@@ -1,4 +1,7 @@
-manager.flight.list.title = List of My Flights:
+master.menu.manager = Manager
+master.menu.manager.flights = Flights
+
+manager.flight.list.title = My Flights:
 manager.flight.form.title = Details of Flight:
 
 manager.flight.list.label.tag = Tag:
