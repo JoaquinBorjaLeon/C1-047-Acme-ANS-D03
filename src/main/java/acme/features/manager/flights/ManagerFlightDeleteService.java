@@ -34,7 +34,8 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		flightId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(flightId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		//status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && super.getRequest().getPrincipal().hasRealm(manager);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -79,7 +80,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		Dataset dataset;
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "drafMode");
-		dataset.put("isdraftMode", flight.isDraftMode());
+
 		dataset.put("departure", flight.getDeparture() != null ? flight.getDeparture().getName() : flight.getDeparture());
 		dataset.put("arrival", flight.getArrival() != null ? flight.getArrival().getName() : flight.getArrival());
 		dataset.put("scheduledDeparture", flight.getFlightDeparture());

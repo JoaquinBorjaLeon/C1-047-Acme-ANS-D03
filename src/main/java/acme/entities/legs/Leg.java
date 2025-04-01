@@ -74,9 +74,8 @@ public class Leg extends AbstractEntity {
 	private Flight				flight;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Boolean				draftMode;
+	private boolean				draftMode;
 
 
 	@Transient
@@ -86,11 +85,6 @@ public class Leg extends AbstractEntity {
 			return (int) duration.toHours();
 		}
 		return 0;
-	}
-
-	@Transient
-	public boolean isDraftMode() {
-		return this.getDraftMode();
 	}
 
 }
