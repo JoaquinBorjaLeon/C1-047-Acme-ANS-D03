@@ -2,8 +2,9 @@
 package acme.entities.flight;
 
 import java.beans.Transient;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -17,9 +18,9 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
+import acme.entities.airport.Airport;
 import acme.entities.legs.Leg;
-import acme.entities.legs.LegRepository;
-import acme.realms.airlinemanager.AirlineManager;
+import acme.realms.manager.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -58,52 +59,63 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private AirlineManager		manager;
+	private Manager		manager;
 
 
 	@Transient
-	public LocalDateTime getScheduledDeparture() {
-		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		List<LocalDateTime> results = repository.findScheduledDepartureByFlightId(this.getId());
-		return results.isEmpty() ? null : results.get(0);
+	public Date getFlightDeparture() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+
+		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
+		Leg firstLeg = listOfLegs.stream().findFirst().orElse(null);
+		return firstLeg != null ? firstLeg.getScheduledDeparture() : null;
 	}
 
 	@Transient
-	public LocalDateTime getScheduledArrival() {
-		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		List<LocalDateTime> results = repository.findScheduledArrivalByFlightId(this.getId());
-		return results.isEmpty() ? null : results.get(0);
-	}
-
-	@Transient
-	public String getOriginCity() {
-		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		List<String> results = repository.findOriginCityByFlightId(this.getId());
-		return results.isEmpty() ? null : results.get(0);
-	}
-
-	@Transient
-	public String getDestinationCity() {
-		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		List<String> results = repository.findDestinationCityByFlightId(this.getId());
-		return results.isEmpty() ? null : results.get(0);
+	public Date getFlightArrival() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
+		Date scheduledArrival = null;
+		if (!listOfLegs.isEmpty())
+			scheduledArrival = listOfLegs.get(listOfLegs.size() - 1).getScheduledArrival();
+		return scheduledArrival;
 	}
 
 	@Transient
 	public Integer getLayovers() {
-		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		return repository.findLayoversByFlightId(this.getId());
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
+		return listOfLegs.size();
+	}
+
+	@Transient
+	public Airport getDeparture() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
+		Leg firstLeg = listOfLegs.stream().findFirst().orElse(null);
+		return firstLeg != null ? firstLeg.getDepartureAirport() : null;
+	}
+
+	@Transient
+	public Airport getArrival() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
+		Airport destination = null;
+		if (!listOfLegs.isEmpty())
+			destination = listOfLegs.get(listOfLegs.size() - 1).getArrivalAirport();
+		return destination;
 	}
 
 	@Transient
 	public boolean isDraftMode() {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.legsByFlightId(this.getId());
+		List<Leg> legs = repository.legsDuringFlight(this.getId());
 
 		if (legs.isEmpty())
-			return false;
+			return true;
 
-		return legs.stream().anyMatch(l -> Boolean.TRUE.equals(l.getDraftMode()));
+		List<Leg> draftModeLegs = legs.stream().filter(l -> l.getDraftMode().equals(true)).collect(Collectors.toList());
+
+		return !draftModeLegs.isEmpty();
 	}
-
 }

@@ -16,12 +16,10 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
 import acme.client.helpers.MomentHelper;
 import acme.constraints.ValidFlightNumber;
 import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
-import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import lombok.Getter;
@@ -51,11 +49,6 @@ public class Leg extends AbstractEntity {
 	private Date				scheduledArrival;
 
 	@Mandatory
-	@Automapped
-	@ValidNumber(min = 1, max = 17)
-	private Double				durationInHours;
-
-	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Airport				departureAirport;
@@ -82,21 +75,22 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
-
-	@Mandatory
-	@Valid
 	@Automapped
 	private Boolean				draftMode;
 
 
 	@Transient
 	public int durationInHours() {
+		if (this.scheduledDeparture != null && this.scheduledArrival != null) {
+			Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
+			return (int) duration.toHours();
+		}
+		return 0;
+	}
 
-		Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
-
-		return duration.toHoursPart();
+	@Transient
+	public boolean isDraftMode() {
+		return this.getDraftMode();
 	}
 
 }

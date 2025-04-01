@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.entities.Passenger;
 import lombok.Getter;
@@ -28,4 +29,7 @@ public class BookingRecord extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Passenger			passenger;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 }

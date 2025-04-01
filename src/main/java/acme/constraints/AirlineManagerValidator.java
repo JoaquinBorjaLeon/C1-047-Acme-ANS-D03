@@ -6,10 +6,10 @@ import javax.validation.ConstraintValidatorContext;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.realms.airlinemanager.AirlineManager;
+import acme.realms.manager.Manager;
 
 @Validator
-public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, AirlineManager> {
+public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, Manager> {
 
 	@Override
 	protected void initialise(final ValidAirlineManager annotation) {
@@ -17,7 +17,7 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 	}
 
 	@Override
-	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
+	public boolean isValid(final Manager airlineManager, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;

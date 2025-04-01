@@ -35,10 +35,10 @@
         <acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
     </acme:menu-option>
 
-    <!-- NUEVO MENÚ PARA MANAGER -->
-    <acme:menu-option code="master.menu.airlinemanager" access="hasRealm('AirlineManager')">
-        <acme:menu-suboption code="master.menu.airlinemanager.flight.list" action="/authenticated/airlinemanager/flight/list"/>
-    </acme:menu-option>
+    <acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
+						<acme:menu-suboption code="master.menu.manager.flights" action="/manager/flight/list"/>
+						<acme:menu-suboption code="master.menu.manager.legs" action="/manager/leg/list"/>
+		</acme:menu-option>
 
     <acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
         <acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>

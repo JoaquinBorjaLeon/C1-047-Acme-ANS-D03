@@ -1,5 +1,5 @@
 
-package acme.realms.airlinemanager;
+package acme.realms.manager;
 
 import java.util.Date;
 
@@ -29,7 +29,7 @@ import lombok.Setter;
 @Setter
 @ValidAirlineManager
 @EqualsAndHashCode(callSuper = true)
-public class AirlineManager extends AbstractRole {
+public class Manager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
