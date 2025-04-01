@@ -1,3 +1,4 @@
+master.menu.customer = Customer
 master.menu.customer.booking = Bookings
 
 customer.booking.list.title = List of bookings
@@ -5,6 +6,7 @@ customer.booking.list.locatorCode = Locator code
 customer.booking.list.purchaseMoment = Purchase moment
 customer.booking.list.price = Price
 customer.booking.list.travelClass = Travel class
+customer.booking.list.draftMode = Draft?
 customer.booking.list.button.create = Create booking
 
 customer.booking.form.title = Booking information
