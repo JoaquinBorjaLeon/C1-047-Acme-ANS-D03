@@ -23,4 +23,5 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<acme:button code="flight-crew-member.flight-assignment.form.button.create" action="/flight-crew-member/flight-assignment/create"/>
+
+	<acme:button code="flight-crew-member.flight-assignment.form.button.create" action="/flight-crew-member/flight-assignment/create"/>
