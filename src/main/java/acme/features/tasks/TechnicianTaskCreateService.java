@@ -39,7 +39,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void bind(final Task task) {
-		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
+		super.bindObject(task, "type", "description", "priority", "duration");
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		if (!this.getBuffer().getErrors().hasErrors("priority") && task.getPriority() != null)
 			super.state(0 <= task.getPriority() && task.getPriority() <= 10, "priority", "acme.validation.tasks.priority.message", task);
 
-		if (!this.getBuffer().getErrors().hasErrors("estimatedDuration") && task.getDuration() != null)
-			super.state(0 <= task.getDuration() && task.getDuration() <= 1000, "estimatedDuration", "acme.validation.tasks.duration.message", task);
+		if (!this.getBuffer().getErrors().hasErrors("duration") && task.getDuration() != null)
+			super.state(0 <= task.getDuration() && task.getDuration() <= 1000, "duration", "acme.validation.tasks.duration.message", task);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		Dataset dataset;
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
+		dataset = super.unbindObject(task, "type", "description", "priority", "duration", "draftMode");
 
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("type", choices);

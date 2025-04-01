@@ -51,7 +51,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void bind(final Task task) {
-		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
+		super.bindObject(task, "type", "description", "priority", "duration");
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 		Dataset dataset;
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
+		dataset = super.unbindObject(task, "type", "description", "priority", "duration", "draftMode");
 		dataset.put("type", choices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
