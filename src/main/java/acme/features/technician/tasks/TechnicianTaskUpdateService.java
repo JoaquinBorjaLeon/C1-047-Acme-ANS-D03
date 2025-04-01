@@ -1,4 +1,4 @@
-package acme.features.tasks;
+package acme.features.technician.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,4 +1,4 @@
-package acme.features.tasks;
+package acme.features.technician.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import acme.entities.tasks.TaskType;
 import acme.realms.technician.Technician;
 
 @GuiService
-public class TechnicianTaskCreateService extends AbstractGuiService<Technician, Task> {
+public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, Task> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -22,17 +22,29 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean exist;
+		Task task;
+		Technician technician;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		task = this.repository.findById(id);
+
+		exist = task != null;
+		if (exist) {
+			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+			if (technician.equals(task.getTechnician()))
+				super.getResponse().setAuthorised(true);
+		}
 	}
 
 	@Override
 	public void load() {
 		Task task;
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		int id;
 
-		task = new Task();
-		task.setDraftMode(true);
-		task.setTechnician(technician);
+		id = super.getRequest().getData("id", int.class);
+		task = this.repository.findById(id);
 
 		super.getBuffer().addData(task);
 	}
@@ -45,22 +57,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	@Override
 	public void validate(final Task task) {
 
-		if (!this.getBuffer().getErrors().hasErrors("type"))
-			super.state(task.getType() != null, "type", "acme.validation.tasks.type.message", task);
-
-		if (!this.getBuffer().getErrors().hasErrors("description") && task.getDescription() != null)
-			super.state(task.getDescription().length() <= 255, "description", "acme.validation.tasks.description.message", task);
-
-		if (!this.getBuffer().getErrors().hasErrors("priority") && task.getPriority() != null)
-			super.state(0 <= task.getPriority() && task.getPriority() <= 10, "priority", "acme.validation.tasks.priority.message", task);
-
-		if (!this.getBuffer().getErrors().hasErrors("duration") && task.getDuration() != null)
-			super.state(0 <= task.getDuration() && task.getDuration() <= 1000, "duration", "acme.validation.tasks.duration.message", task);
 	}
 
 	@Override
 	public void perform(final Task task) {
-		this.repository.save(task);
+		this.repository.delete(task);
 	}
 
 	@Override
@@ -71,9 +72,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "duration", "draftMode");
-
 		dataset.put("type", choices.getSelected().getKey());
-		dataset.put("type", choices);
 
 		super.getResponse().addData(dataset);
 	}
