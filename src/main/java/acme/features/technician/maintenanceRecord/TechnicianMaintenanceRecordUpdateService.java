@@ -1,13 +1,11 @@
-package acme.features.maintenancerecord;
+package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -16,7 +14,7 @@ import acme.entities.maintenancerecord.MaintenanceRecordStatus;
 import acme.realms.technician.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -27,18 +25,30 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean exist;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findById(id);
+
+		exist = maintenanceRecord != null;
+		if (exist) {
+			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+			if (technician.equals(maintenanceRecord.getTechnician()))
+				super.getResponse().setAuthorised(true);
+		}
 	}
 
 	@Override
 	public void load() {
 		MaintenanceRecord maintenanceRecord;
-		Date moment = MomentHelper.getCurrentMoment();
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		int id;
 
-		maintenanceRecord = new MaintenanceRecord();
-		maintenanceRecord.setTechnician(technician);
-		maintenanceRecord.setMaintenanceMoment(moment);
+		id = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findById(id);
+
 		super.getBuffer().addData(maintenanceRecord);
 	}
 

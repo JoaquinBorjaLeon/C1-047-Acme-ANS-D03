@@ -1,4 +1,4 @@
-package acme.features.maintenancerecord;
+package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
 
@@ -14,7 +14,7 @@ import acme.entities.maintenancerecord.MaintenanceRecordStatus;
 import acme.realms.technician.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -60,27 +60,11 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
 
-		if (!this.getBuffer().getErrors().hasErrors("status"))
-			super.state(maintenanceRecord.getStatus() != null, "status", "acme.validation.maintenancerecord.status.message", maintenanceRecord);
-
-		if (!this.getBuffer().getErrors().hasErrors("nextInspectionDate") && maintenanceRecord.getNextInspectionDate() != null)
-			super.state(maintenanceRecord.getNextInspectionDate().after(maintenanceRecord.getMaintenanceMoment()), 
-					"nextInspectionDate", "acme.validation.maintenancerecord.nextinspectiondate.message", maintenanceRecord);
-
-		if (!this.getBuffer().getErrors().hasErrors("estimatedCost") && maintenanceRecord.getEstimatedCost() != null)
-			super.state(0.00 <= maintenanceRecord.getEstimatedCost().getAmount() && maintenanceRecord.getEstimatedCost().getAmount() <= 1000000.00, 
-					"estimatedCost", "acme.validation.maintenancerecord.estimatedCost.message", maintenanceRecord);
-
-		if (!this.getBuffer().getErrors().hasErrors("notes") && maintenanceRecord.getNotes() != null)
-			super.state(maintenanceRecord.getNotes().length() <= 255, "notes", "acme.validation.maintenancerecord.notes.message", maintenanceRecord);
-
-		}
+	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
-		assert maintenanceRecord != null;
-
-		this.repository.save(maintenanceRecord);
+		this.repository.delete(maintenanceRecord);
 	}
 
 	@Override
@@ -97,9 +81,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		dataset = super.unbindObject(maintenanceRecord, "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
 
 		dataset.put("status", choices.getSelected().getKey());
-		dataset.put("status", choices);
 		dataset.put("aircraft", aircraft.getSelected().getKey());
-		dataset.put("aircraft", aircraft);
 
 		super.getResponse().addData(dataset);
 	}

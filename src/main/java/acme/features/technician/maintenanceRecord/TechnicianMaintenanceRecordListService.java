@@ -1,4 +1,4 @@
-package acme.features.maintenancerecord;
+package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
 
