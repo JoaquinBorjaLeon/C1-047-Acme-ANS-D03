@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.List;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +32,20 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		assert context != null;
 
 		boolean result;
-		if (leg == null || leg.getAircraft() == null)
+		if (leg == null) {
+			super.state(context, false, "leg", "javax.validation.constraints.NotNull.message");
+			return false;
+		}
+
+		if (leg.getAircraft() == null) {
 			super.state(context, false, "Aircraft", "javax.validation.constraints.NotNull.message");
-		else {
+			return false;
+		} else {
 			{
 
-				boolean uniqueLeg;
+				Leg existingLeg = this.repository.getLegFromFlightNumber(leg.getFlightNumber());
 
-				Leg existingLeg;
-
-				existingLeg = this.repository.getLegFromFlightNumber(leg.getFlightNumber());
-
-				uniqueLeg = existingLeg == null || existingLeg.equals(leg);
+				boolean uniqueLeg = existingLeg == null || existingLeg.equals(leg);
 
 				super.state(context, uniqueLeg, "flightNumber", "acme.validation.legs.flight-number.message");
 			}
@@ -65,6 +69,23 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				super.state(context, validLeg, "flightNumber", "acme.validation.legs.flight-number.message");
 
+			}
+			List<Leg> allLegs = this.repository.findAllLegs();
+			for (Leg otherLeg : allLegs)
+				if (!otherLeg.equals(leg) && otherLeg.getAircraft() != null && otherLeg.getAircraft().equals(leg.getAircraft()))
+					if (leg.getScheduledDeparture().before(otherLeg.getScheduledArrival()) && leg.getScheduledArrival().after(otherLeg.getScheduledDeparture())) {
+						super.state(context, false, "aircraft", "acme.validation.legs.aircraft-in-use.message");
+						break;
+					}
+		}
+
+		{
+			if (leg.getDepartureAirport() != null && leg.getArrivalAirport() != null) {
+				String originCity = leg.getDepartureAirport().getCity();
+				String destinationCity = leg.getArrivalAirport().getCity();
+				if (originCity != null && destinationCity != null)
+					if (originCity.equalsIgnoreCase(destinationCity))
+						super.state(context, false, "arrivalAirport", "acme.validation.legs.same-city.error");
 			}
 		}
 

@@ -9,23 +9,23 @@ import acme.client.components.validation.Validator;
 import acme.realms.manager.Manager;
 
 @Validator
-public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, Manager> {
+public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 	@Override
-	protected void initialise(final ValidAirlineManager annotation) {
+	protected void initialise(final ValidManager annotation) {
 		assert annotation != null;
 	}
 
 	@Override
-	public boolean isValid(final Manager airlineManager, final ConstraintValidatorContext context) {
+	public boolean isValid(final Manager manager, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
 
-		if (airlineManager == null)
+		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			DefaultUserIdentity identity = airlineManager.getIdentity();
+			DefaultUserIdentity identity = manager.getIdentity();
 			String nombreInicial = identity.getName().substring(0, 1);
 			String surname = identity.getSurname();
 			String[] palabras = surname.split("\\s");
@@ -36,7 +36,7 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 					surnameIniciales += palabras[i].substring(0, 1);
 			surnameIniciales = surnameIniciales.toUpperCase();
 			String iniciales = nombreInicial + surnameIniciales;
-			String identifier = airlineManager.getIdentifierNumber();
+			String identifier = manager.getIdentifierNumber();
 
 			Boolean esCorrectoIdentificador = identifier.startsWith(iniciales);
 			super.state(context, esCorrectoIdentificador, "identifierNumber", "Initials Error");

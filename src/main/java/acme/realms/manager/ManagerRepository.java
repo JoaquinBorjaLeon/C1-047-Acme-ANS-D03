@@ -12,5 +12,5 @@ import acme.client.repositories.AbstractRepository;
 public interface ManagerRepository extends AbstractRepository {
 
 	@Query("SELECT a FROM Manager a")
-	List<Manager> findAllAirlineManagers();
+	List<Manager> findAllManagers();
 }

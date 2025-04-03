@@ -17,7 +17,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAirlineManager;
+import acme.constraints.ValidManager;
 import acme.constraints.ValidIdentifierNumber;
 import acme.entities.airline.Airline;
 import lombok.EqualsAndHashCode;
@@ -27,7 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidAirlineManager
+@ValidManager
 @EqualsAndHashCode(callSuper = true)
 public class Manager extends AbstractRole {
 
