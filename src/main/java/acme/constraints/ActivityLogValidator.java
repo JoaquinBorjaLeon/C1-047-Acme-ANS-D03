@@ -10,7 +10,7 @@ import acme.client.components.validation.Validator;
 import acme.entities.activityLog.ActivityLog;
 import acme.entities.activityLog.ActivityLogRepository;
 import acme.entities.legs.Leg;
-import acme.entities.legs.LegType;
+import acme.entities.legs.LegStatus;
 
 @Validator
 public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, ActivityLog> {
@@ -36,7 +36,7 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 			Leg existingLeg;
 			boolean isLegLanded;
 			existingLeg = this.repository.findLegByActivityLogId(activityLog.getId());
-			isLegLanded = existingLeg.getStatus().equals(LegType.LANDED);
+			isLegLanded = existingLeg.getStatus().equals(LegStatus.LANDED);
 			super.state(context, !isLegLanded, "legType", "acme.validation.ActivityLog.statusLeg.message");
 		}
 
