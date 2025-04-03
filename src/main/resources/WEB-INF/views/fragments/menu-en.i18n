@@ -31,6 +31,10 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.technician ##########################################################
+
+master.menu.technician = Technician
+master.menu.techinician.tasks-list = Tasks list
 # master.menu.customer ##########################################################
 
 master.menu.customer = Customer
