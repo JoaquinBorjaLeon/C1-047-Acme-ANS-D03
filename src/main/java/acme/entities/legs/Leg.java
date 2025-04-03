@@ -61,7 +61,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private LegType				status;
+	private LegStatus			status;
 
 	@Mandatory
 	@Valid
@@ -73,13 +73,18 @@ public class Leg extends AbstractEntity {
 	@ManyToOne
 	private Flight				flight;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
 
 	@Transient
 	public int durationInHours() {
-
-		Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
-
-		return duration.toHoursPart();
+		if (this.scheduledDeparture != null && this.scheduledArrival != null) {
+			Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
+			return (int) duration.toHours();
+		}
+		return 0;
 	}
 
 }

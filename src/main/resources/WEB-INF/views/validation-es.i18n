@@ -12,9 +12,13 @@ acme.validation.legs.flight-number.message = El número de vuelo debe estar comp
 acme.validation.legs.departure-arrival-date.message = La fecha de salida del vuelo debe ser mayor a la de llegada.
 acme.validation.legs.current-dates.message = La fecha de salida y de llegada del vuelo deben ser mayores a la actual.
 acme.validation.legs.flight-number.message = El número de vuelo debe ser único.
+acme.validation.legs.aircraft-in-use.message = La aeronave ya está en uso durante esa fecha.
+acme.validation.legs.same-city.error = El vuelo no puede tener la misma ciudad de origen y destino.
 
-acme.validation.airlinemanagers.identifier.message = El identificador debe contener 2 o 3 letras siendo tus iniciales y 6 dígitos.
-acme.validation.airline-manager.identifier-number.message = El número de identificador debe ser único.
+acme.validation.manager.identifier.message = El identificador debe contener 2 o 3 letras siendo tus iniciales y 6 dígitos.
+acme.validation.manager.identifier-number.message = El número de identificador debe ser único.
+
+acme.validation.flight.not-null = El vuelo no puede ser nulo.
 
 javax.validation.constraints.NotNull.message = El valor no puede ser nulo.
 javax.validation.constraints.NotBlank.message = El valor no puede estar en blanco.
@@ -26,6 +30,7 @@ acme.validation.activityLog.statusLeg.message = La "Leg" no debe estar en estado
 
 acme.validation.airport.iata-code.message = El código IATA debe ser único.
 
+acme.validation.length = Longitud de cadena inválida
 acme.validation.phone-number.message = El número de teléfono puede contener el carácter "+" y debe tener entre 6 y 15 dígitos.
 
 acme.validation.iata-code.message = El código IATA debe tener 3 letras.

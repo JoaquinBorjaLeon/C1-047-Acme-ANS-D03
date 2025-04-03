@@ -25,4 +25,3 @@
   <span class="fa fa-phone"></span> &nbsp; <acme:print code="master.company.phone"/><br/>
   <span class="fa fa-at"></span> &nbsp; <a href="mailto:<acme:print code="master.company.email"/>"><acme:print code="master.company.email"/></a> <br/>
 </address>
-

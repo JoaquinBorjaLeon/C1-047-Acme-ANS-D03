@@ -31,6 +31,23 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.technician ##########################################################
+
+master.menu.technician = Technician
+master.menu.techinician.tasks-list = Tasks list
+master.menu.technician.maintenance-record-list = Maintenance records list
+
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = Bookings
+master.menu.customer.passenger = Passengers
+
+# master.menu.flightCrewMember #################################################
+ master.menu.flightCrewMember = FlightCrewMember
+ master.menu.flightCrewMember.listLanded = Completed assignments
+ master.menu.flightCrewMember.listPlanned = Planned assignments
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -40,7 +57,7 @@ master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 
-# master.menu.technician ##########################################################
-
-master.menu.technician = Technician
-master.menu.technician.maintenance-record-list = Maintenance records list
+# master.menu.manager ####################################################
+master.menu.manager = Manager
+master.menu.manager.legs = Legs
+master.menu.manager.flights = Flights
