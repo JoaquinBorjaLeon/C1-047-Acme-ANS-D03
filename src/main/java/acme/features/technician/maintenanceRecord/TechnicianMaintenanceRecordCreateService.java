@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.constraints.ValidCurrencies;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.MaintenanceRecordStatus;
@@ -35,10 +36,12 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		MaintenanceRecord maintenanceRecord;
 		Date moment = MomentHelper.getCurrentMoment();
 		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		Boolean draftMode = true;
 
 		maintenanceRecord = new MaintenanceRecord();
 		maintenanceRecord.setTechnician(technician);
 		maintenanceRecord.setMaintenanceMoment(moment);
+		maintenanceRecord.setDraftMode(draftMode);
 		super.getBuffer().addData(maintenanceRecord);
 	}
 
@@ -51,20 +54,23 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	public void validate(final MaintenanceRecord maintenanceRecord) {
 
 		if (!this.getBuffer().getErrors().hasErrors("status"))
-			super.state(maintenanceRecord.getStatus() != null, "status", "acme.validation.maintenancerecord.status.message", maintenanceRecord);
+			super.state(maintenanceRecord.getStatus() != null, "status", "acme.validation.technician.maintenance-record.noStatus.message", maintenanceRecord);
 
 		if (!this.getBuffer().getErrors().hasErrors("nextInspectionDate") && maintenanceRecord.getNextInspectionDate() != null)
-			super.state(maintenanceRecord.getNextInspectionDate().after(maintenanceRecord.getMaintenanceMoment()), 
-					"nextInspectionDate", "acme.validation.maintenancerecord.nextinspectiondate.message", maintenanceRecord);
+			super.state(maintenanceRecord.getNextInspectionDate().compareTo(maintenanceRecord.getMaintenanceMoment()) > 0, "nextInspectionDate", "acme.validation.technician.maintenance-record.nextInspectionDate.message", maintenanceRecord);
 
 		if (!this.getBuffer().getErrors().hasErrors("estimatedCost") && maintenanceRecord.getEstimatedCost() != null)
-			super.state(0.00 <= maintenanceRecord.getEstimatedCost().getAmount() && maintenanceRecord.getEstimatedCost().getAmount() <= 1000000.00, 
-					"estimatedCost", "acme.validation.maintenancerecord.estimatedCost.message", maintenanceRecord);
+			super.state(0.00 <= maintenanceRecord.getEstimatedCost().getAmount() && maintenanceRecord.getEstimatedCost().getAmount() <= 1000000.00, "estimatedCost", "acme.validation.technician.maintenance-record.estimatedCost.message", maintenanceRecord);
 
+		if (!this.getBuffer().getErrors().hasErrors("estimatedCost") && maintenanceRecord.getEstimatedCost() != null)
+			super.state(ValidCurrencies.isValidCurrency(maintenanceRecord.getEstimatedCost().getCurrency()), "estimatedCost", "acme.validation.technician.maintenance-record.estimatedCost.currency.message", maintenanceRecord);
+		
 		if (!this.getBuffer().getErrors().hasErrors("notes") && maintenanceRecord.getNotes() != null)
-			super.state(maintenanceRecord.getNotes().length() <= 255, "notes", "acme.validation.maintenancerecord.notes.message", maintenanceRecord);
+			super.state(maintenanceRecord.getNotes().length() <= 255, "notes", "acme.validation.technician.maintenance-record.notes.message", maintenanceRecord);
 
-		}
+		if (!this.getBuffer().getErrors().hasErrors("aircraft") && maintenanceRecord.getAircraft() != null)
+			super.state(this.repository.findAllAircrafts().contains(maintenanceRecord.getAircraft()), "aircraft", "acme.validation.technician.maintenance-record.aircraft.message", maintenanceRecord);
+	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
@@ -82,7 +88,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		Dataset dataset;
 		aircrafts = this.repository.findAllAircrafts();
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
-		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
+		aircraft = SelectChoices.from(aircrafts, "regNumber", maintenanceRecord.getAircraft());
 
 		dataset = super.unbindObject(maintenanceRecord, "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
 
