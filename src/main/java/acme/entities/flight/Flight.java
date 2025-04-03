@@ -17,15 +17,17 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.legs.Leg;
-import acme.realms.manager.Manager;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -45,27 +47,31 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private Money				cost;
 
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
+
 	@Optional
 	@Size(max = 255)
 	@Automapped
 	private String				description;
-
-	@Mandatory
-	@Automapped
-	private boolean				draftMode;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Manager				manager;
 
 
 	@Transient
 	public Date getFlightDeparture() {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
-		Leg firstLeg = listOfLegs.stream().findFirst().orElse(null);
-		return firstLeg != null ? firstLeg.getScheduledDeparture() : null;
+		Date scheduledDeparture = null;
+		if (!listOfLegs.isEmpty()) {
+			Leg firstLeg = null;
+			for (Leg leg : listOfLegs)
+				if (firstLeg == null || leg.getScheduledDeparture().before(firstLeg.getScheduledDeparture()))
+					firstLeg = leg;
+			if (firstLeg != null)
+				scheduledDeparture = firstLeg.getScheduledDeparture();
+		}
+		return scheduledDeparture;
 	}
 
 	@Transient
@@ -73,8 +79,14 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
 		Date scheduledArrival = null;
-		if (!listOfLegs.isEmpty())
-			scheduledArrival = listOfLegs.get(listOfLegs.size() - 1).getScheduledArrival();
+		if (!listOfLegs.isEmpty()) {
+			Leg lastLeg = null;
+			for (Leg leg : listOfLegs)
+				if (lastLeg == null || leg.getScheduledArrival().after(lastLeg.getScheduledArrival()))
+					lastLeg = leg;
+			if (lastLeg != null)
+				scheduledArrival = lastLeg.getScheduledArrival();
+		}
 		return scheduledArrival;
 	}
 
@@ -82,15 +94,15 @@ public class Flight extends AbstractEntity {
 	public Integer getLayovers() {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
-		return listOfLegs.size() - 1;
+		return listOfLegs.size() - 2;
 	}
 
 	@Transient
 	public Airport getDeparture() {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> listOfLegs = repository.legsDuringFlight(this.getId());
-		Leg firstLeg = listOfLegs.stream().findFirst().orElse(null);
-		return firstLeg != null ? firstLeg.getDepartureAirport() : null;
+		Leg firstLegs = listOfLegs.stream().findFirst().orElse(null);
+		return firstLegs != null ? firstLegs.getDepartureAirport() : null;
 	}
 
 	@Transient
@@ -102,4 +114,5 @@ public class Flight extends AbstractEntity {
 			destination = listOfLegs.get(listOfLegs.size() - 1).getArrivalAirport();
 		return destination;
 	}
+
 }
