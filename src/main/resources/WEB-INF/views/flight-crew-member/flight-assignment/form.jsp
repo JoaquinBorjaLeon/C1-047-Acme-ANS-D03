@@ -18,7 +18,6 @@
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.publish" action="/flight-crew-member/flight-assignment/publish"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.update" action="/flight-crew-member/flight-assignment/update"/>
-			<acme:button code="flight-crew-member.flight-assignment.form.button.list-logs" action="/flight-crew-member/activity-log/list?masterId=${id}"/>
 			
 		</jstl:when>
 

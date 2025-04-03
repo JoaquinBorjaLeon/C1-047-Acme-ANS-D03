@@ -14,6 +14,7 @@ import acme.entities.flightassignment.AssigmentStatus;
 import acme.entities.flightassignment.CrewsDuty;
 import acme.entities.flightassignment.FlightAssignment;
 import acme.entities.legs.Leg;
+import acme.realms.flightcrewmember.AvailabilityStatus;
 import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
@@ -70,6 +71,8 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		Dataset dataset;
 		SelectChoices dutyChoice;
 		SelectChoices currentStatusChoice;
+		AvailabilityStatus available;
+		available = AvailabilityStatus.AVAILABLE;
 
 		SelectChoices legChoice;
 		Collection<Leg> legs;
@@ -83,7 +86,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		legs = this.repository.findAllLegs();
 		legChoice = SelectChoices.from(legs, "id", flightAssignment.getLeg());
 
-		flightCrewMembers = this.repository.findAllFlightCrewMembers();
+		flightCrewMembers = this.repository.findAllCrewMembersAvailables(available);
 		flightCrewMemberChoice = SelectChoices.from(flightCrewMembers, "id", flightAssignment.getAllocatedFlightCrewMember());
 
 		dataset = super.unbindObject(flightAssignment, "duty", "momentLastUpdate", "currentStatus", "remarks", "leg", "allocatedFlightCrewMember", "draftMode");
