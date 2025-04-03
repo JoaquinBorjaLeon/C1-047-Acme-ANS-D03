@@ -30,6 +30,7 @@ acme.validation.activityLog.statusLeg.message = La "Leg" no debe estar en estado
 
 acme.validation.airport.iata-code.message = El código IATA debe ser único.
 
+acme.validation.length = Longitud de cadena inválida
 acme.validation.phone-number.message = El número de teléfono puede contener el carácter "+" y debe tener entre 6 y 15 dígitos.
 
 acme.validation.iata-code.message = El código IATA debe tener 3 letras.

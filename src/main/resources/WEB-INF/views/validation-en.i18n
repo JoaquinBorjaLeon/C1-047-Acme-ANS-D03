@@ -30,6 +30,8 @@ acme.validation.activityLog.statusLeg.message = The leg must not be in LANDED st
 
 acme.validation.airport.iata-code.message = The Iata Code must be unique.
 
+acme.validation.length = Invalid string length
+
 acme.validation.phone-number.message = The phone number could be the character + and must have between 6 and 15 digits.
 
 acme.validation.iata-code.message = The IATA code must be 3 letters
