@@ -1,6 +1,3 @@
-master.menu.customer = Customer
-master.menu.customer.booking = Bookings
-
 customer.booking.list.title = List of bookings
 customer.booking.list.locatorCode = Locator code
 customer.booking.list.purchaseMoment = Purchase moment
@@ -19,11 +16,11 @@ customer.booking.form.flight = Flight tag
 
 customer.booking.form.button.create = Create
 customer.booking.form.button.update = Update
-customer.booking.form.button.delete = Delete
 customer.booking.form.button.publish = Publish
 
 customer.booking.form.show.passengers = View passengers
 
 acme.validation.confirmation.message.lastCardNibble = Booking cannot be published if there is no LastCardNibble set
-acme.validation.confirmation.message.booking.locatorCode = This locatorCode does not belong to any Booking yet
+acme.validation.confirmation.message.booking.locatorCode = This locatorCode belongs to another Booking
 acme.validation.confirmation.message.update = A booking cannot be modified if it is already published
+acme.validation.confirmation.message.booking.flight = This flight is not valid

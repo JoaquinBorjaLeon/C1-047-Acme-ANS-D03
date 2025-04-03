@@ -18,11 +18,11 @@
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && !draftMode}"  >		
 			<acme:button code="customer.booking.form.show.passengers" action="/customer/passenger/list?bookingId=${bookingId}"/>
 		</jstl:when> 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode && (lastCardNibbleIsEmpty || anyPassengerInDraftMode)}"  >		
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode && (lastCardNibbleIsEmpty || anyPassengerInDraftMode || !atLeastOnePassenger)}"  >		
 			<acme:button code="customer.booking.form.show.passengers" action="/customer/passenger/list?bookingId=${bookingId}"/>
 			<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode && (!lastCardNibbleIsEmpty || !anyPassengerInDraftMode)}"  >		
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode && !lastCardNibbleIsEmpty && !anyPassengerInDraftMode && atLeastOnePassenger}"  >		
 			<acme:button code="customer.booking.form.show.passengers" action="/customer/passenger/list?bookingId=${bookingId}"/>
 			<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
 			<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>

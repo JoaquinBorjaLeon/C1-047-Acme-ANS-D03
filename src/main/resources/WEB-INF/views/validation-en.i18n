@@ -25,4 +25,6 @@ acme.validation.activityLog.statusLeg.message = The leg must not be in LANDED st
 javax.validation.constraints.NotNull.message = The value cannot be null.
 javax.validation.constraints.NotBlank.message = The value cannot be blank.
 
+acme.validation.length = Invalid string length
+
 

@@ -2,11 +2,13 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -71,6 +73,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			if (lastCardNibbleStored == null || lastCardNibbleStored.isBlank() || lastCardNibbleStored.isEmpty())
 				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastCardNibble");
 		}
+
+		Booking b = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
+		if (b != null && b.getId() != booking.getId())
+			super.state(false, "locatorCode", "acme.validation.confirmation.message.booking.locatorCode");
+
+		Collection<Flight> validFlights = this.repository.findAllPublishedFlights().stream().filter(f -> this.repository.legsByFlightId(f.getId()).stream().allMatch(leg -> leg.getScheduledDeparture().after(MomentHelper.getCurrentMoment())))
+			.collect(Collectors.toList());
+
+		if (booking.getFlight() != null && !validFlights.contains(booking.getFlight()))
+			super.state(false, "flight", "acme.validation.confirmation.message.booking.flight");
 		;
 	}
 
@@ -91,7 +103,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 		Collection<Flight> flights;
 
-		flights = this.repository.findAllFlights();
+		flights = this.repository.findAllPublishedFlights();
 		flightChoices = SelectChoices.from(flights, "tag", booking.getFlight());
 		classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 

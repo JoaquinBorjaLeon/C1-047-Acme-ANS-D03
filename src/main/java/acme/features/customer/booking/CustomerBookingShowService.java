@@ -60,14 +60,17 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 		Collection<Flight> flights;
 		Collection<Passenger> passengersInDraftMode;
+		Collection<Passenger> passengers;
 
 		boolean status = true;
 		boolean anyPassengerInDraftMode = true;
+		boolean atLeastOnePassenger = true;
 
-		flights = this.repository.findAllFlights();
+		flights = this.repository.findAllPublishedFlights();
 		flightChoices = SelectChoices.from(flights, "tag", booking.getFlight());
 		classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		passengersInDraftMode = this.repository.findPassengersInDraftMode(booking.getId());
+		passengers = this.repository.findPassengersByBooking(booking.getId());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble", "draftMode");
 		dataset.put("bookingId", booking.getId());
@@ -81,6 +84,9 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		if (passengersInDraftMode.isEmpty())
 			anyPassengerInDraftMode = false;
 		dataset.put("anyPassengerInDraftMode", anyPassengerInDraftMode);
+		if (passengers.isEmpty())
+			atLeastOnePassenger = false;
+		dataset.put("atLeastOnePassenger", atLeastOnePassenger);
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,6 +1,3 @@
-master.menu.customer = Cliente
-master.menu.customer.booking = Reservas
-
 customer.booking.list.title = Listado de reservas
 customer.booking.list.locatorCode = Código de localización
 customer.booking.list.purchaseMoment = Fecha de la compra
@@ -19,11 +16,11 @@ customer.booking.form.flight = Etiqueta del vuelo
 
 customer.booking.form.button.create = Crear
 customer.booking.form.button.update = Actualizar
-customer.booking.form.button.delete = Eliminar
 customer.booking.form.button.publish = Publicar
 
 customer.booking.form.show.passengers = Ver pasajeros
 
 acme.validation.confirmation.message.lastCardNibble = La reserva no se puede publicar si no se han indicado los últimos 4 dígitos de la tarjeta de crédito
-acme.validation.confirmation.message.booking.locatorCode = Este localizador no está asociado a ninguna reserva todavía
+acme.validation.confirmation.message.booking.locatorCode = Este localizador está asociado a otra reserva
 acme.validation.confirmation.message.update = La reserva no se puede modificar si ya ha sido publicada
+acme.validation.confirmation.message.booking.flight Este vuelo no es válido

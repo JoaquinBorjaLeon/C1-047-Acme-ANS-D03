@@ -25,4 +25,4 @@ acme.validation.airlinemanagers.identifier.message = El identificador debe conte
 javax.validation.constraints.NotNull.message = El valor no puede ser nulo.
 javax.validation.constraints.NotBlank.message = El valor no puede estar en blanco.
 
-
+acme.validation.length = Longitud de cadena inválida
