@@ -15,7 +15,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidActivityLog;
 import acme.entities.flightassignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidActivityLog
+//@ValidActivityLog
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -31,7 +30,7 @@ public class ActivityLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private FlightAssignment	reporter;
+	private FlightAssignment	flightAssignment;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,7 +45,7 @@ public class ActivityLog extends AbstractEntity {
 	@Mandatory
 	@ValidString(min = 1, max = 255)
 	@Automapped
-	private String				incidentDescription;
+	private String				description;
 
 	@Mandatory
 	@ValidNumber(min = 0, max = 10)

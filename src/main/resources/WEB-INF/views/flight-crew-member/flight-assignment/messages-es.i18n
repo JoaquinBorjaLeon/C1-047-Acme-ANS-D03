@@ -23,6 +23,7 @@ flight-crew-member.flight-assignment.form.label.remarks = Observaciones
 flight-crew-member.flight-assignment.form.label.leg = Tramo
 flight-crew-member.flight-assignment.form.label.draftMode = Borrador
 
+
 # Botones
 flight-crew-member.flight-assignment.form.button.return = Volver
 flight-crew-member.flight-assignment.form.button.update = Actualizar

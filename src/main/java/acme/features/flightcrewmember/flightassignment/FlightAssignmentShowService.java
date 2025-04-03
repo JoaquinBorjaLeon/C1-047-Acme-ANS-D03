@@ -69,7 +69,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		flightCrewMembers = this.repository.findAllFlightCrewMembers();
 		flightCrewMemberChoice = SelectChoices.from(flightCrewMembers, "id", assignment.getAllocatedFlightCrewMember());
 
-		dataset = super.unbindObject(assignment, "duty", "currentStatus", "remarks", "draftMode", "leg", "allocatedFlightCrewMember", "momentLastUpdate");
+		dataset = super.unbindObject(assignment, "duty", "currentStatus", "remarks", "leg", "allocatedFlightCrewMember", "draftMode", "momentLastUpdate");
 		dataset.put("dutyChoice", dutyChoice);
 		dataset.put("currentStatusChoice", currentStatusChoice);
 		dataset.put("legChoice", legChoice);

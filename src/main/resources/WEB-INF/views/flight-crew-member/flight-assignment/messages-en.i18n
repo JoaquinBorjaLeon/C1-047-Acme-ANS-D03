@@ -23,6 +23,7 @@ flight-crew-member.flight-assignment.form.label.remarks = Remarks
 flight-crew-member.flight-assignment.form.label.leg = Leg
 flight-crew-member.flight-assignment.form.label.draftMode = Draft Mode
 
+
 # Buttons
 flight-crew-member.flight-assignment.form.button.return = Return
 flight-crew-member.flight-assignment.form.button.update = Update
