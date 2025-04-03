@@ -34,3 +34,12 @@ acme.validation.length = Longitud de cadena inválida
 acme.validation.phone-number.message = El número de teléfono puede contener el carácter "+" y debe tener entre 6 y 15 dígitos.
 
 acme.validation.iata-code.message = El código IATA debe tener 3 letras.
+
+acme.validation.technician.identifier.message = Identificador no válido
+acme.validation.technician.maintenance-record.noStatus.message = Debes seleccionar un estatus para el registro
+acme.validation.technician.maintenance-record.nextInspectionDate.message =  La fecha y hora de la siguiente inspección debe ser posterior a los actuales
+acme.validation.technician.maintenance-record.estimatedCost.message = El coste estimado debe ser mayor o igual a  0,00 y menor o igual que 1000000,00
+acme.validation.technician.maintenance-record.estimatedCost.currency.message = El coste estimado debe ser expresado en USD, EUR o GBP
+acme.validation.technician.maintenance-record.notes.message = Los detalles no pueden tener más de 255 caracteres
+acme.validation.technician.maintenance-record.aircraft.message = Debes seleccionar un avión válido
+acme.validation.technician.maintenance-record.published.message = Debes crear y publicar las tareas asociadas a este registro antes de publicarlo

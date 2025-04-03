@@ -21,7 +21,7 @@ public class MaintenanceRecordTask extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne
-	private MaintenanceRecord MaintenanceRecord;
+	private MaintenanceRecord maintenanceRecord;
 	
 	@Mandatory
 	@Valid

@@ -35,3 +35,12 @@ acme.validation.length = Invalid string length
 acme.validation.phone-number.message = The phone number could be the character + and must have between 6 and 15 digits.
 
 acme.validation.iata-code.message = The IATA code must be 3 letters
+
+acme.validation.technician.identifier.message = Invalid identifier
+acme.validation.technician.maintenance-record.noStatus.message = No status has been selected
+acme.validation.technician.maintenance-record.nextInspectionDate.message =  The date and time of the next inspection must be after the current moment
+acme.validation.technician.maintenance-record.estimatedCost.message = The estimated cost must be greater than or equal to 0.00, and less than or equal to 1000000.00
+acme.validation.technician.maintenance-record.estimatedCost.currency.message = The estimated cost must be expressed in USD, EUR or GBP
+acme.validation.technician.maintenance-record.notes.message = The maximum length of notes is 255 characters
+acme.validation.technician.maintenance-record.aircraft.message = The selected aircraft does not exist
+acme.validation.technician.maintenance-record.published.message = You need to have all your task created and published prior to publish this record
