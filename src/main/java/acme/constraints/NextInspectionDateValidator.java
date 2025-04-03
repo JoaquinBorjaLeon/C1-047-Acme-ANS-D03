@@ -19,10 +19,10 @@ public class NextInspectionDateValidator extends AbstractValidator<ValidNextInsp
 	public boolean isValid(final MaintenanceRecord maintenanceRecord, final ConstraintValidatorContext context) {
 		assert context != null;
 
-		if (maintenanceRecord == null || maintenanceRecord.getMaintenaceMoment() == null || maintenanceRecord.getNextInspectionDate() == null)
+		if (maintenanceRecord == null || maintenanceRecord.getMaintenanceMoment() == null || maintenanceRecord.getNextInspectionDate() == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			boolean nextInspectionDateAfterMaintenanceMoment = maintenanceRecord.getNextInspectionDate().after(maintenanceRecord.getMaintenaceMoment());
+			boolean nextInspectionDateAfterMaintenanceMoment = maintenanceRecord.getNextInspectionDate().after(maintenanceRecord.getMaintenanceMoment());
 			super.state(context, nextInspectionDateAfterMaintenanceMoment, "nextInspectionDate", "acme.validation.maintenancerecord.nextinspectiondate.message");
 		}
 

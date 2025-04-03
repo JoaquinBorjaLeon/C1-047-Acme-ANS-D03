@@ -2,7 +2,6 @@
 package acme.entities.legs;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,8 +16,9 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.client.helpers.MomentHelper;
 import acme.constraints.ValidFlightNumber;
-import acme.constraints.ValidLegs;
+import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
@@ -28,7 +28,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidLegs
+@ValidLeg
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -61,7 +61,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private LegType				status;
+	private LegStatus			status;
 
 	@Mandatory
 	@Valid
@@ -73,15 +73,18 @@ public class Leg extends AbstractEntity {
 	@ManyToOne
 	private Flight				flight;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
 
 	@Transient
 	public int durationInHours() {
-		Instant departureInstant = this.scheduledDeparture.toInstant();
-		Instant arrivalInstant = this.scheduledArrival.toInstant();
-
-		Duration duration = Duration.between(departureInstant, arrivalInstant);
-
-		return duration.toHoursPart();
+		if (this.scheduledDeparture != null && this.scheduledArrival != null) {
+			Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
+			return (int) duration.toHours();
+		}
+		return 0;
 	}
 
 }
