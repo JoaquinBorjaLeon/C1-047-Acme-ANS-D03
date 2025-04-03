@@ -17,17 +17,15 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
-import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.legs.Leg;
-import lombok.EqualsAndHashCode;
+import acme.realms.manager.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -47,15 +45,19 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private Money				cost;
 
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
-
 	@Optional
 	@Size(max = 255)
 	@Automapped
 	private String				description;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Manager				manager;
 
 
 	@Transient
