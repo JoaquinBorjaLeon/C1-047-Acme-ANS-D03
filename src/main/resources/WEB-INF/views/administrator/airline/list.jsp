@@ -10,6 +10,10 @@
 	<acme:list-column code="administrator.airline.list.label.websiteUrl" path="websiteUrl" width="20%"/>
 	<acme:list-column code="administrator.airline.list.label.email" path="email" width="20%"/>
 	<acme:list-column code="administrator.airline.list.label.phoneNumber" path="phoneNumber" width="20%"/>
+	<acme:list-payload path="payload"/>	
 </acme:list>
+�
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="administrator.airline.list.button.create" action="/administrator/airline/create"/>
+</jstl:if>	
 
-<acme:button code="administrator.airline.list.button.create" action="/administrator/airline/create"/>
