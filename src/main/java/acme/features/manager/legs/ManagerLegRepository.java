@@ -49,7 +49,7 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("select c from Claim c where c.leg.id = :id")
 	public List<Claim> findClaimsByLegId(int id);
 
-	@Query("select a from ActivityLog a where a.reporter.id = :id")
+	@Query("select a from ActivityLog a where a.flightAssignment.id = :id")
 	public List<ActivityLog> findActivityLogsByFlightAssignmentId(int id);
 
 	@Query("select t from TrackingLog t where t.claim.id = :id")
