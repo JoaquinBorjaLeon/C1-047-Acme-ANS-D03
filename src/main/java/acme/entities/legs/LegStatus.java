@@ -1,6 +1,6 @@
 
 package acme.entities.legs;
 
-public enum LegType {
+public enum LegStatus {
 	ON_TIME, DELAYED, CANCELLED, LANDED;
 }

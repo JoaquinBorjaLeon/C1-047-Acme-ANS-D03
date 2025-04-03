@@ -13,11 +13,11 @@ import javax.validation.Payload;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = AirlineManagerValidator.class)
+@Constraint(validatedBy = ManagerValidator.class)
 
-public @interface ValidAirlineManager {
+public @interface ValidManager {
 
-	String message() default "{acme.validation.airlinemanagers.identifier.message}";
+	String message() default "{acme.validation.manager.identifier.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 
