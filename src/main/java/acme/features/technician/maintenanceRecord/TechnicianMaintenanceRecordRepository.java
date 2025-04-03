@@ -22,6 +22,6 @@ public interface TechnicianMaintenanceRecordRepository extends AbstractRepositor
 	@Query("SELECT a FROM Aircraft a")
 	Collection<Aircraft> findAllAircrafts();
 	
-	@Query("SELECT t FROM Task t JOIN MaintenanceRecordTask rt WHERE rt.maintenanceRecord.id = :id")
+	@Query("SELECT t FROM Task t JOIN MaintenanceRecordTask rt ON t.id = rt.task.id WHERE rt.maintenanceRecord.id = :id")
 	Collection<Task> findTasksByMaintenanceRecordId(int id);
 }
