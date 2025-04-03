@@ -59,7 +59,6 @@
     <acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
         <acme:menu-suboption code="master.menu.customer.booking" action="/customer/booking/list"/>
     </acme:menu-option>
-</acme:menu-left>
 
 <acme:menu-right>		
     <acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
@@ -70,4 +69,3 @@
         <acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
     </acme:menu-option>
 </acme:menu-right>
-</acme:menu-bar>
