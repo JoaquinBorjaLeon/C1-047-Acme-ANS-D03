@@ -18,4 +18,5 @@ public interface FlightRepository extends AbstractRepository {
 
 	@Query("select f.cost from Flight f where f.id = :flightId")
 	Money findCostByFlight(int flightId);
+
 }
