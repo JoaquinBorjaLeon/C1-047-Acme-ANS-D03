@@ -12,9 +12,13 @@ acme.validation.legs.flight-number.message = The flight number must be composed 
 acme.validation.legs.current-dates.message = The date of departure and arrival of the flight must be greater than the current one.
 acme.validation.legs.departure-arrival-date.message = The flight departure date must be greater than the arrival date.
 acme.validation.legs.flight-number.message = The flight number must be unique.
+acme.validation.legs.aircraft-in-use.message = The aircraft is already in use during those dates.
+acme.validation.legs.same-city.error = The flight cannot have the same origin and destination city.
 
-acme.validation.airlinemanagers.identifier.message = The identifier must have 2 or 3 letters correspond to your initials and 6 digits.
-acme.validation.airline-manager.identifier-number.message = The identifier number must be unique.
+acme.validation.manager.identifier.message = The identifier must have 2 or 3 letters correspond to your initials and 6 digits.
+acme.validation.manager.identifier-number.message = The identifier number must be unique.
+
+acme.validation.flight.not-null = The flight cannot be null.
 
 javax.validation.constraints.NotNull.message = The value cannot be null.
 javax.validation.constraints.NotBlank.message = The value cannot be blank.
@@ -25,6 +29,8 @@ acme.validation.flightCrewMember.duplicated-employeeCode.message = The employeeC
 acme.validation.activityLog.statusLeg.message = The leg must not be in LANDED status
 
 acme.validation.airport.iata-code.message = The Iata Code must be unique.
+
+acme.validation.length = Invalid string length
 
 acme.validation.phone-number.message = The phone number could be the character + and must have between 6 and 15 digits.
 
