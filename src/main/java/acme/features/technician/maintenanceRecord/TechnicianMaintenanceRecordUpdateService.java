@@ -8,6 +8,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.constraints.ValidCurrencies;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.MaintenanceRecordStatus;
@@ -70,6 +71,9 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		if (!this.getBuffer().getErrors().hasErrors("estimatedCost") && maintenanceRecord.getEstimatedCost() != null)
 			super.state(0.00 <= maintenanceRecord.getEstimatedCost().getAmount() && maintenanceRecord.getEstimatedCost().getAmount() <= 1000000.00, 
 					"estimatedCost", "acme.validation.maintenancerecord.estimatedCost.message", maintenanceRecord);
+		
+		if (!this.getBuffer().getErrors().hasErrors("estimatedCost") && maintenanceRecord.getEstimatedCost() != null)
+			super.state(ValidCurrencies.isValidCurrency(maintenanceRecord.getEstimatedCost().getCurrency()), "estimatedCost", "acme.validation.technician.maintenance-record.estimatedCost.currency.message", maintenanceRecord);
 
 		if (!this.getBuffer().getErrors().hasErrors("notes") && maintenanceRecord.getNotes() != null)
 			super.state(maintenanceRecord.getNotes().length() <= 255, "notes", "acme.validation.maintenancerecord.notes.message", maintenanceRecord);
@@ -92,13 +96,13 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		Dataset dataset;
 		aircrafts = this.repository.findAllAircrafts();
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
-		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
+		aircraft = SelectChoices.from(aircrafts, "regNumber", maintenanceRecord.getAircraft());
 
 		dataset = super.unbindObject(maintenanceRecord, "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
 
 		dataset.put("status", choices.getSelected().getKey());
 		dataset.put("status", choices);
-		dataset.put("aircraft", aircraft.getSelected().getKey());
+		dataset.put("aircraft", aircraft.getSelected().getLabel());
 		dataset.put("aircraft", aircraft);
 
 		super.getResponse().addData(dataset);
