@@ -2,8 +2,6 @@
 package acme.entities.tasks;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
@@ -12,6 +10,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.realms.technician.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,10 +41,14 @@ public class Task extends AbstractEntity {
 	@Automapped
 	private Integer	duration;
 
-//	TO-DO: uncomment this when/if Technician class is accepted
-//	@ManyToOne
-//	@Mandatory
-//	@Automapped
-//	private Technician technician;
+	@ManyToOne
+	@Mandatory
+	@Automapped
+	private Technician technician;
+	
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean draftMode;
 
 }

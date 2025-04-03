@@ -30,7 +30,7 @@ public class FlightAssignment extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Leg				leg;
+	private Leg					leg;
 
 	@Mandatory
 	@Valid
@@ -56,4 +56,9 @@ public class FlightAssignment extends AbstractEntity {
 	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				remarks;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
 }

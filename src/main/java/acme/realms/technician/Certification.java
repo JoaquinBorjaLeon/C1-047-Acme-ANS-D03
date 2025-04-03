@@ -20,7 +20,7 @@ public class Certification extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidString(min=1, max = 255)
 	@Automapped
 	private String certification;
 	
@@ -28,5 +28,10 @@ public class Certification extends AbstractEntity {
 	@Valid
 	@ManyToOne
 	private Technician technician;
+	
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean draftMode;
 
 }

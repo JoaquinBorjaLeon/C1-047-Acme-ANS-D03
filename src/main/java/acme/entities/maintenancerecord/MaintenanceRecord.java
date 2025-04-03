@@ -32,7 +32,7 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date maintenaceMoment;
+	private Date maintenanceMoment;
 
 	@Mandatory
 	@Valid
@@ -49,8 +49,9 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Automapped
 	private Money estimatedCost;
 
-	@ValidString(min=1, max = 255)
+
 	@Optional
+	@ValidString(min=1, max = 255)
 	@Automapped
 	private String notes;
 
@@ -63,5 +64,10 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	private Technician technician;
+	
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean draftMode;
 
 }
