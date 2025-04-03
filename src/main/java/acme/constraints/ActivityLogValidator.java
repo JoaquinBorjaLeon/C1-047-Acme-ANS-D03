@@ -37,7 +37,7 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 			boolean isLegLanded;
 			existingLeg = this.repository.findLegByActivityLogId(activityLog.getId());
 
-			isLegLanded = existingLeg.getStatus().equals(LegType.LANDED);
+			isLegLanded = existingLeg.getStatus().equals(LegStatus.LANDED);
 			super.state(context, !isLegLanded, "leg", "acme.validation.ActivityLog.statusLeg.message");
 		}
 

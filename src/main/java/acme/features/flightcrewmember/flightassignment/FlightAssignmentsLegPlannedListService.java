@@ -10,7 +10,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightassignment.FlightAssignment;
-import acme.entities.legs.LegType;
+import acme.entities.legs.LegStatus;
 import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
@@ -27,7 +27,7 @@ public class FlightAssignmentsLegPlannedListService extends AbstractGuiService<F
 
 	@Override
 	public void load() {
-		Collection<LegType> legStatus = List.of(LegType.ON_TIME, LegType.DELAYED);
+		Collection<LegStatus> legStatus = List.of(LegStatus.ON_TIME, LegStatus.DELAYED);
 		int memberId;
 		Collection<FlightAssignment> assignments;
 
