@@ -55,7 +55,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "status", "maintenanceMoment", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
+		super.bindObject(maintenanceRecord, "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
 	}
 
 	@Override
@@ -64,14 +64,15 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		id = super.getRequest().getData("id", int.class);
 		Collection<Task> tasks = this.repository.findTasksByMaintenanceRecordId(id);
 
-		if (!this.getBuffer().getErrors().hasErrors("published") && maintenanceRecord.getDraftMode())
+		if (!this.getBuffer().getErrors().hasErrors("draftMode") && maintenanceRecord.getDraftMode())
 			super.state(tasks.size() > 0 && tasks.stream().allMatch(t -> !t.getDraftMode()), 
-					"aircraft", "acme.validation.technician.maintenance-record.unpublished-tasks.message", maintenanceRecord);
+					"aircraft", "acme.validation.technician.maintenance-record.published.message", maintenanceRecord);
 	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
-		maintenanceRecord.setDraftMode(false);
+		Boolean draftMode = false;
+		maintenanceRecord.setDraftMode(draftMode);
 		this.repository.save(maintenanceRecord);
 	}
 
@@ -85,8 +86,9 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		aircrafts = this.repository.findAllAircrafts();
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
-	
-		dataset = super.unbindObject(maintenanceRecord, "status", "maintenanceMoment", "nextInspectionDate", "estimatedCost", "notes", "aircraft", "draftMode");
+
+		dataset = super.unbindObject(maintenanceRecord, "status", "nextInspectionDate", "estimatedCost", "notes", "aircraft", "draftMode");
+
 		dataset.put("status", choices.getSelected().getKey());
 		dataset.put("status", choices);
 		dataset.put("aircraft", aircraft.getSelected().getKey());
